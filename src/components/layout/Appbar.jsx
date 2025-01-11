@@ -41,6 +41,7 @@ const Wrapper = styled.div`
     justify-content: space-between;
     width: 100%;
     padding: 24px 24px 24px;
+    padding-bottom: max(calc(env(safe-area-inset-bottom) + 24px), 24px);
     background-color: #303134;
     border-radius: 20px 20px 0 0;
     box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.25);

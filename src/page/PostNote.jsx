@@ -1,37 +1,54 @@
 import { useState } from 'react';
-import { supabase } from '../supabaseClient';
+import usePostStore from '../store/usePostStore';
 import Input from '../components/common/Input';
+import styled from 'styled-components';
 
 const PostNote = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [todo, setTodo] = useState([]);
 
-    // 일기 데이터 저장
-    const saveDiary = async () => {
-        const { data, error } = await supabase.from('diary').insert([
-            {
-                title: title,
-                content: content,
-                created_at: new Date().toISOString(),
-            },
-        ]);
+    const savePost = usePostStore((state) => state.savePost);
 
-        if (error) {
-            console.error('Error inserting data:', error);
-        } else {
-            console.log('Insert success:', data);
-        }
+    const saveDiary = () => {
+        savePost({ title, content, todo });
+    };
+
+    const addTodoInput = () => {
+        setTodo([...todo, '']);
+    };
+
+    const removeTodoInput = (index) => {
+        setTodo(todo.filter((_, i) => i !== index));
+    };
+
+    const handleTodoChange = (value, index) => {
+        const newTodo = [...todo];
+        newTodo[index] = value;
+        setTodo(newTodo);
     };
 
     return (
-        <div>
-            <Input placeholder="제목" value={title} onChange={setTitle} />
-            <Input placeholder="내용" value={content} onChange={setContent} />
+        <Wrapper>
+            <Input placeholder="제목" value={title} onChange={(value) => setTitle(value)} />
+            <Input placeholder="내용" value={content} onChange={(value) => setContent(value)} />
+            {todo.map((todoItem, index) => (
+                <Input key={index} variant="todo" placeholder="todo" value={todoItem} onChange={(value) => handleTodoChange(value, index)} onRemove={() => removeTodoInput(index)} />
+            ))}
+            <button type="button" onClick={addTodoInput}>
+                할일 추가
+            </button>
             <button type="button" onClick={saveDiary}>
                 저장
             </button>
-        </div>
+        </Wrapper>
     );
 };
 
 export default PostNote;
+
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 12px 0;
+`;

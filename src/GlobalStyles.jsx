@@ -274,6 +274,8 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+  height: 100vh;
+  overflow: hidden;
 }
 ol, ul {
 	list-style: none;
@@ -292,6 +294,10 @@ table {
 }
 
 
+
+ #root {
+  height: 100%;
+ }
 `;
 
 export default GlobalStyles;

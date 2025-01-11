@@ -23,8 +23,8 @@ const PostItem = ({ post }) => {
             <Inner>
                 <div className="title">{post.title}</div>
                 <div className="content">{post.content}</div>
-                {post.todo?.map((todo) => (
-                    <TodoItem key={todo} title={todo} />
+                {post.todo?.map((todo, index) => (
+                    <TodoItem key={index} title={todo} />
                 ))}
             </Inner>
         </Wrapper>

@@ -20,8 +20,8 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 42px;
-    padding: 0 24px;
+    padding: 12px 24px;
+    padding-top: max(calc(env(safe-area-inset-top) + 12px), 12px);
     .logo {
         font-size: 18px;
         font-weight: 700;
