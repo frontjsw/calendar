@@ -1,34 +1,6 @@
 import styled from 'styled-components';
-import TodoItem from './TodoItem';
 const PostItem = ({ post }) => {
-    const date = new Date(post.created_at);
-
-    // 날짜 포맷팅
-    const day = date.getDate().toString().padStart(2, '0'); // 날짜를 2자리 숫자로
-    const weekday = date.toLocaleDateString('en-US', { weekday: 'long' }); // 요일
-    const month = date.toLocaleDateString('en-US', { month: 'long' }); // 월
-    const year = date.getFullYear(); // 연도
-    console.log(post);
-    return (
-        <Wrapper>
-            <DateWrap>
-                <div className="num">{day}</div>
-                <div className="date">
-                    <div className="day">On {weekday}</div>
-                    <div className="month-year">
-                        in {month} {year}
-                    </div>
-                </div>
-            </DateWrap>
-            <Inner>
-                <div className="title">{post.title}</div>
-                <div className="content">{post.content}</div>
-                {post.todo?.map((todo, index) => (
-                    <TodoItem key={index} title={todo} />
-                ))}
-            </Inner>
-        </Wrapper>
-    );
+    return <Wrapper></Wrapper>;
 };
 
 export default PostItem;

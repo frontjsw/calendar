@@ -1,8 +1,10 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Main from './page/main';
-import PostNote from './page/PostNote';
 import Layout from './components/layout/Layout';
+import PostCreate from './page/PostCreate';
+import MyPage from './page/MyPage';
 import PostList from './page/PostList';
+
 const router = createBrowserRouter([
     {
         path: '/',
@@ -14,15 +16,15 @@ const router = createBrowserRouter([
             },
             {
                 path: '/post',
-                element: <PostNote />,
+                element: <PostCreate />,
             },
             {
                 path: '/list',
                 element: <PostList />,
             },
             {
-                path: '/allList',
-                element: <PostList />,
+                path: '/mypage',
+                element: <MyPage />,
             },
         ],
     },

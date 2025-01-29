@@ -1,29 +1,12 @@
 import styled from 'styled-components';
-import TodoItem from '../components/view/TodoItem';
-import usePostStore from '../store/usePostStore';
-import { useEffect } from 'react';
 
 const Main = () => {
-    const posts = usePostStore((state) => state.posts);
-    const getPosts = usePostStore((state) => state.getPosts);
-
-    useEffect(() => {
-        getPosts();
-    }, []);
-
-    const TodayPost = posts.filter((post) => post.created_at.split('T')[0] === new Date().toISOString().split('T')[0]);
-    const TodayTodos = TodayPost.filter((post) => post.todo)
-        .map((post) => post.todo)
-        .flat();
     return (
         <Wrapper>
             <Title>{`조승원님\n행복을 기록하세요.`}</Title>
             <CalendarWrap>캘린더 영역 슬라이드</CalendarWrap>
             <TodoListWrap>
                 <div className="title">오늘의 행복할일</div>
-                {TodayTodos.map((todo, index) => (
-                    <TodoItem key={index} title={todo} />
-                ))}
             </TodoListWrap>
         </Wrapper>
     );

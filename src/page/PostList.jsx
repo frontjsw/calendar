@@ -1,20 +1,29 @@
-import { useEffect } from 'react';
-import usePostStore from '../store/usePostStore';
-import PostItem from '../components/view/PostItem';
 import styled from 'styled-components';
+import { supabase } from '../lib/supabase';
+import { useEffect, useState } from 'react';
 
 const PostList = () => {
-    const posts = usePostStore((state) => state.posts);
-    const getPosts = usePostStore((state) => state.getPosts);
+    const [postData, setPostData] = useState([]);
+
+    const getPostData = async () => {
+        const { data, error } = await supabase.from('diary').select('*');
+        if (error) {
+            console.log('error : get Post Data error :', error);
+            return;
+        }
+        setPostData(data);
+    };
 
     useEffect(() => {
-        getPosts();
+        getPostData();
     }, []);
-
     return (
         <Wrapper>
-            {posts.map((post) => (
-                <PostItem key={post.id} post={post} />
+            {postData.map((post) => (
+                <div key={post.id} className="post-item">
+                    <div className="title">{post.title}</div>
+                    <div className="title">{post.content}</div>
+                </div>
             ))}
         </Wrapper>
     );

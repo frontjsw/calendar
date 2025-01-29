@@ -1,6 +1,5 @@
 import { faFolder, faHouse, faList, faPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 const Appbar = () => {
@@ -23,7 +22,7 @@ const Appbar = () => {
                     <FontAwesomeIcon icon={faList} />
                 </div>
             </MenuBtn>
-            <MenuBtn to="/allList" $isActive={location.pathname === '/allList'}>
+            <MenuBtn to="/mypage" $isActive={location.pathname === '/mypage'}>
                 <div className="icon">
                     <FontAwesomeIcon icon={faFolder} />
                 </div>
